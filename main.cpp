@@ -1,11 +1,12 @@
 #include <iostream>
-#include <cstdlib> 
+#include <cstdlib>
+#include <chrono>
 #include <ctime> 
 using namespace std;
 
 int RandomInt()
 {
-	srand((unsigned)time(0));
+	srand(static_cast<unsigned int>(std::chrono::steady_clock::now().time_since_epoch().count()));
 	int i;
 	i = (rand()%7)+1;
 	return i;
