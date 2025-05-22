@@ -1,5 +1,5 @@
 # -p4n1s
-Small compact minimal unix programm wich communicates the user about his lil joe real size. Now with even more phrases to describe your equipment!
+Small compact minimal unix programm wich communicates the user about his lil joe real size. Now with even more phrases to describe your equipment! It also features a cool loading animation before revealing the message!
 
 ## Installation
 1. Clone this repository.

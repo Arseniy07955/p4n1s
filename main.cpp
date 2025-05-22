@@ -2,7 +2,27 @@
 #include <cstdlib>
 #include <chrono>
 #include <ctime> 
+#include <thread> // Added for std::this_thread
 using namespace std;
+
+void displayProgressBar() {
+    const int total_steps = 20;
+    const int total_duration_ms = 1500;
+    const int bar_width = 25;
+    const int sleep_duration_per_step = total_duration_ms / total_steps;
+
+    for (int i = 0; i <= total_steps; ++i) {
+        cout << "[";
+        int completed_chars = (i * bar_width) / total_steps;
+        for (int j = 0; j < completed_chars; ++j) cout << "=";
+        if (i < total_steps) cout << ">"; else cout << "="; // Ensure bar is full at 100%
+        for (int j = 0; j < bar_width - completed_chars; ++j) cout << " ";
+        cout << "] " << (i * 100) / total_steps << "%\r";
+        cout.flush();
+        std::this_thread::sleep_for(std::chrono::milliseconds(sleep_duration_per_step));
+    }
+    cout << endl; // Move to next line after progress bar completion
+}
 
 int RandomInt()
 {
@@ -91,6 +111,7 @@ void writeDick(int id)
 int main()
 {
 	srand(static_cast<unsigned int>(std::chrono::steady_clock::now().time_since_epoch().count()));
+	displayProgressBar(); // Call the progress bar function
 	writeDick(RandomInt());	
 	return 0;
 }
